@@ -1,19 +1,22 @@
+<script>
+  import Navbar from './components/Navbar.vue';
+  import Footer from './components/Footer.vue';
+
+  export default {
+    components: {
+      Navbar,
+      Footer
+    }
+  }
+</script>
+
 <template>
-  <header>
-    <RouterLink to="/">
-      <img alt="Burger Logo" class="logo" src="/img/logo.png" width="125" height="125" />
-    </RouterLink>
-
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/pedidos">Pedidos</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <Navbar />
   <RouterView />
+  <Footer />
 </template>
 
 <style scoped>
+
+
 </style>
