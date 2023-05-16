@@ -1,6 +1,8 @@
 <template>
   <header>
-    <img alt="Burger Logo" class="logo" src="/img/logo.png" width="125" height="125" />
+    <RouterLink to="/">
+      <img alt="Burger Logo" class="logo" src="/img/logo.png" width="125" height="125" />
+    </RouterLink>
 
     <div class="wrapper">
       <nav>
