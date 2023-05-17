@@ -6,8 +6,8 @@
             selectName: String,
             labelFor: String,
             labelContent: String,
-            selectOptions: {
-                type: Object,
+            options: {
+                type: Array,
                 required: true
             }
         }
@@ -19,7 +19,7 @@
         <label :for="labelFor">{{labelContent}}</label>
         <select :name="selectName" :id="selectID">
             <option value="" disabled>--Choose--</option>
-            <option :v-for="option in selectOptions" :value="option.optionValue"> {{option.optionContent}} </option>
+            <option v-for="option in options" :value="option.value">{{ option.content }}</option>
         </select>
     </fieldset>
 </template>

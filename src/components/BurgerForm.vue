@@ -11,22 +11,22 @@ export default {
     data (){
         return{
             customer_name: '',
-            bread: '',
-            meat: '',
+            breadOptions: [],
+            meatOptions: [],
             addons: [],
-            optionsaa: { optionValue: "zap", optionContent: "sharapova" }
         }
     }
 }
 </script>
+
 <template>
     <form action="" method="post">
         <Input input-type="text" input-ID="customer-name" input-name="customer_name" label-for="customer-name" label-content="Customer Name" />
-        <Select select-ID="bread-type" select-name="bread_type" label-for="bread-type" label-content="Bread Type" :select-options="optionsaa" />
+        <Select select-ID="bread-type" select-name="bread_type" label-for="bread-type" label-content="Bread Type" :options="this.breadOptions" />
+        <Select select-ID="meat-type" select-name="meat_type" label-for="meat-type" label-content="Meat Type" :options="this.meatOptions" />
         <fieldset>
             <label for="">Add-ons</label>
             <div>
-                <input type="checkbox" name="" id="">
                 <!-- Checkbox iteration -->
             </div>
         </fieldset>
