@@ -4,11 +4,10 @@
   transition: all .2s ease-in-out;
 }
 
-#app {
-  max-width: 1280px;
+.container{
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  padding: 1.25rem 0;
 }
 
 a{
@@ -17,7 +16,38 @@ a{
 }
 
 a:hover{
-  color: #333;
+  color: #222;
 }
 
+fieldset{
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: auto;
+}
 
+label{
+  margin: 15px auto 10px 0;
+}
+
+button,
+input[type='submit']{
+  background-color: #222;
+  border: 2px solid #222;
+  border-radius: 5px;
+  color: #ffe83d;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 15px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  transition: all .3s ease-in-out;
+}
+
+button:hover,
+input[type='submit']:hover{
+  background-color: #ffe83d;
+  color: #222;
+}

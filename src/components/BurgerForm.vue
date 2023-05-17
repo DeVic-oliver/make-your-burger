@@ -33,3 +33,11 @@ export default {
         <button type="submit">Order your burger</button>
     </form>
 </template>
+
+<style scoped>
+    form{
+        max-width: 350px;
+        widows: 100%;
+        margin: 30px auto;
+    }
+</style>
