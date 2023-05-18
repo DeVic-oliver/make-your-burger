@@ -10,7 +10,7 @@ export default {
     },
     data (){
         return{
-            customer_name: '',
+                customer_name: '',
             breadOptions: [],
             meatOptions: [],
             addons: [],
@@ -24,7 +24,24 @@ export default {
             this.breadOptions = data.paes;
             this.meatOptions = data.carnes;
             this.addons = data.opcionais;
-        }
+            }
+
+            const dataJson = JSON.stringify(dataToSend);
+
+            const request = await this.fetchAPI('burgers', {
+                method: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: dataJson
+            });
+
+            const response = await request.json();
+            console.log(response); 
+            
+        },
+        fetchAPI(uri = '', params = {}){
+            const apiURL = 'http://localhost:3000/' + uri; 
+            return fetch(apiURL, params);
+        },
     },
     mounted(){
         this.getIngredientsFromAPI();
@@ -33,13 +50,13 @@ export default {
 </script>
 
 <template>
-    <form action="" method="post">
-        <Input input-type="text" input-ID="customer-name" input-name="customer_name" label-for="customer-name" label-content="Customer Name" />
-        <Select select-ID="bread-type" select-name="bread_type" label-for="bread-type" label-content="Bread Type" :options="this.breadOptions" />
-        <Select select-ID="meat-type" select-name="meat_type" label-for="meat-type" label-content="Meat Type" :options="this.meatOptions" />
+    <form action="" method="post" @submit="sendRequest">
+        <Input @input-value="this.order.customer_name = $event" input-type="text" input-ID="customer-name" label-for="customer-name" label-content="Customer Name" />
+        <Select @selected-option="this.order.bread = $event" select-ID="bread-type" label-for="bread-type" label-content="Bread Type" :options="this.breadOptions" />
+        <Select @selected-option="this.order.meat = $event" select-ID="meat-type" label-for="meat-type" label-content="Meat Type" :options="this.meatOptions" />
         <fieldset>
             <label>Add-ons</label>
-            <div v-for="addon in this.addons" :key="addon.id">
+            <div v-for="addon in this.addonsOptions" :key="addon.id">
                 <label :for="`${addon.id}_${addon.tipo}`">{{ addon.tipo }}</label>
                 <input :id="`${addon.id}_${addon.tipo}`" type="checkbox" name="addon[]"  />
             </div>
