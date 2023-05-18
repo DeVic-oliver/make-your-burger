@@ -15,6 +15,19 @@ export default {
             meatOptions: [],
             addons: [],
         }
+    },
+    methods:{
+        async getIngredientsFromAPI() {
+            const apiURL = 'http://localhost:3000' 
+            const request = await fetch(`${apiURL}/ingredientes`);
+            const data = await request.json();
+            this.breadOptions = data.paes;
+            this.meatOptions = data.carnes;
+            this.addons = data.opcionais;
+        }
+    },
+    mounted(){
+        this.getIngredientsFromAPI();
     }
 }
 </script>
@@ -25,9 +38,10 @@ export default {
         <Select select-ID="bread-type" select-name="bread_type" label-for="bread-type" label-content="Bread Type" :options="this.breadOptions" />
         <Select select-ID="meat-type" select-name="meat_type" label-for="meat-type" label-content="Meat Type" :options="this.meatOptions" />
         <fieldset>
-            <label for="">Add-ons</label>
-            <div>
-                <!-- Checkbox iteration -->
+            <label>Add-ons</label>
+            <div v-for="addon in this.addons" :key="addon.id">
+                <label :for="`${addon.id}_${addon.tipo}`">{{ addon.tipo }}</label>
+                <input :id="`${addon.id}_${addon.tipo}`" type="checkbox" name="addon[]"  />
             </div>
         </fieldset>
         <button type="submit">Order your burger</button>
