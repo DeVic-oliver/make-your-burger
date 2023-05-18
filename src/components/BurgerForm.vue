@@ -10,20 +10,31 @@ export default {
     },
     data (){
         return{
+            order: {
                 customer_name: '',
+                bread: '',
+                meat: '',
+            },
             breadOptions: [],
             meatOptions: [],
-            addons: [],
+            addonsOptions: [],
         }
     },
     methods:{
         async getIngredientsFromAPI() {
-            const apiURL = 'http://localhost:3000' 
-            const request = await fetch(`${apiURL}/ingredientes`);
+            const request = await this.fetchAPI('ingredientes');
             const data = await request.json();
             this.breadOptions = data.paes;
             this.meatOptions = data.carnes;
-            this.addons = data.opcionais;
+            this.addonsOptions = data.opcionais;
+        },
+        async sendRequest(e){
+            e.preventDefault();
+            
+            const dataToSend = {
+                customer: this.order.customer_name,
+                bread: this.order.bread,
+                meat: this.order.meat
             }
 
             const dataJson = JSON.stringify(dataToSend);
